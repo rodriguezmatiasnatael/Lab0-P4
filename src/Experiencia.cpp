@@ -17,6 +17,7 @@ Experiencia::Experiencia(Experiencia& exp){
     descripcion = exp.descripcion;
     precioBase = exp.precioBase;
     fecha = DTFecha(exp.fecha);
+    participantes = exp.participantes;
 }
 Experiencia::~Experiencia() {}
 
@@ -37,6 +38,10 @@ DTFecha Experiencia :: getFecha(){
     return fecha;
 }
 
+set<string>& Experiencia::getParticipantes(){
+    return participantes;
+}
+
 void Experiencia :: setCodigoReserva(string cod){
     codigoReserva = cod;
 }
@@ -53,3 +58,6 @@ void Experiencia :: setFecha(DTFecha f){
     fecha = DTFecha(f);//se puede hacer esto?
 }
 
+void Experiencia::setParticipantes(set<string>& p){
+    participantes = p;
+}
