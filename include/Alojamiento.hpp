@@ -6,18 +6,24 @@
 
 class Alojamiento : public Experiencia {
     private:
-        std::string hotel;
+        string hotel;
         TipoRegimen regimen;
         int cantNoches;
     public:
-        Alojamiento(std::string cod, std::string desc, int precio, DTFecha f, std::string h, TipoRegimen reg, int cant);
+        Alojamiento(string, string, int, DTFecha,string, TipoRegimen, int);
+        Alojamiento(Alojamiento&);
         ~Alojamiento() override;
         
-        std::string getHotel();
+        string getHotel();
         TipoRegimen getRegimen();
         int getCantNoches();
-        
-        float calcularCosto() override;
+
+        void setHotel(string);
+        void setRegimen(TipoRegimen);
+        void setCantNoches(int);
+
+        //no seria virtual??
+        float virtual calcularCosto() override;
 };
 
 #endif
