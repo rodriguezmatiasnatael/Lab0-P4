@@ -7,21 +7,28 @@
 
 class Experiencia {
     private:
-        std::string codigoReserva;
-        std::string descripcion;
+        string codigoReserva,descripcion;
         int precioBase;
         DTFecha fecha;
-
+        set<string> participantes;
     public:
-        Experiencia(std::string cod, std::string desc, int precio, DTFecha f);
+        Experiencia(string,string, int, DTFecha);
+        Experiencia(Experiencia&);
         virtual ~Experiencia();
 
 
-        std::string getCodigoReserva();
-        std::string getDescripcion();
+        string getCodigoReserva();
+        string getDescripcion();
+        //para que es el const aca?
         int getPrecioBase() const;
+        DTFecha getFecha();
+
+        void setCodigoReserva(string);
+        void setDescripcion(string);
+        void setPrecioBase(int);
+        void setFecha(DTFecha);
+
         virtual DTExpe getDT() const;
-        
         virtual float calcularCosto() = 0; 
 };
 
