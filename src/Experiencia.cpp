@@ -5,21 +5,51 @@
 
 #include "Experiencia.hpp"
 
-Experiencia::Experiencia(std::string cod, std::string desc, int precio, DTFecha f) 
-    : codigoReserva(cod), descripcion(desc), precioBase(precio), fecha(f) {}
-
+Experiencia::Experiencia(string cod,string desc, int precio, DTFecha f,set<string> p) {
+    codigoReserva = cod;
+    descripcion = desc;
+    precioBase = pbase;
+    fecha = DTFecha(f);
+    participantes = p;
+}
+Experiencia::Experiencia(Experiencia& exp){
+    codigoReserva = exp.codigoReserva;
+    descripcion = exp.descripcion;
+    precioBase = exp.precioBase;
+    fecha = DTFecha(exp.fecha);
+}
 Experiencia::~Experiencia() {}
 
 
-std::string Experiencia::getCodigoReserva() {
-    return this->codigoReserva;
+string Experiencia::getCodigoReserva() {
+    return codigoReserva;
 }
 
-std::string Experiencia::getDescripcion() {
-    return this->descripcion
+string Experiencia::getDescripcion() {
+    return descripcion;
 }
 
 int Experiencia::getPrecioBase() const {
-    return this->precioBase;
+    return precioBase;
+}
+
+DTFecha Experiencia :: getFecha(){
+    return fecha;
+}
+
+void Experiencia :: setCodigoReserva(string cod){
+    codigoReserva = cod;
+}
+
+void Experiencia :: setDescripcion(string desc){
+    descripcion = desc;
+}
+
+void Experiencia :: setPrecioBase(int pbase){
+    precioBase = pbase;
+}
+
+void Experiencia :: setFecha(DTFecha f){
+    fecha = DTFecha(f);//se puede hacer esto?
 }
 
