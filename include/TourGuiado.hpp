@@ -6,15 +6,22 @@
 
 class TourGuiado : public Experiencia {
     private:
-        std::string agencia;
-        std::set<std::string> lugaresVisitados;
+        string agencia;
+        set<string> lugaresVisitados;
+        int cantTuristas;
     public:
-        TourGuiado(std::string cod, std::string desc, int precio, DTFecha f, std::string ag, std::set<std::string> lugares);
+        TourGuiado(string, string, int, DTFecha, string,set<string>&,int);
+        TourGuiado(TourGuiado&);
         ~TourGuiado() override;
 
-        std::string getAgencia();
-        std::<std::string> getLugaresVisitados();
+        string getAgencia();
+        //aca no estoy seguro si pasarlo por referencia
+        set<string>& getLugaresVisitados();
 
+        void setAgencia(string);
+        //preguntar el &
+        void setLugaresVisitados(const set<string>&);
+        void setCantTuristas(int);
         float calcularCosto() override;
 };
 
