@@ -5,28 +5,29 @@
 
 #include "Experiencia.hpp"
 
-Experiencia::Experiencia(string cod,string desc, int precio, DTFecha f,set<string> p) {
+Experiencia::Experiencia(std::string cod, std::string desc, int precio, DTFecha f) {
     codigoReserva = cod;
     descripcion = desc;
-    precioBase = pbase;
+    precioBase = precioBase;
     fecha = DTFecha(f);
-    participantes = p;
 }
+/*
 Experiencia::Experiencia(Experiencia& exp){
     codigoReserva = exp.codigoReserva;
     descripcion = exp.descripcion;
     precioBase = exp.precioBase;
     fecha = DTFecha(exp.fecha);
     participantes = exp.participantes;
-}
+}*/
+
 Experiencia::~Experiencia() {}
 
 
-string Experiencia::getCodigoReserva() {
+std::string Experiencia::getCodigoReserva() const{
     return codigoReserva;
 }
 
-string Experiencia::getDescripcion() {
+std::string Experiencia::getDescripcion() const{
     return descripcion;
 }
 
@@ -34,19 +35,20 @@ int Experiencia::getPrecioBase() const {
     return precioBase;
 }
 
-DTFecha Experiencia :: getFecha(){
+DTFecha Experiencia :: getFecha() const{
     return fecha;
 }
 
-set<string>& Experiencia::getParticipantes(){
+/*set<string>& Experiencia::getParticipantes(){
     return participantes;
+} 
+Puse en el hpp por que creo que no va aca*/
+
+void Experiencia::setCodigoReserva(const std::string& codigo){
+    codigoReserva = codigo;
 }
 
-void Experiencia :: setCodigoReserva(string cod){
-    codigoReserva = cod;
-}
-
-void Experiencia :: setDescripcion(string desc){
+void Experiencia :: setDescripcion(const std::string& desc){
     descripcion = desc;
 }
 
@@ -54,10 +56,12 @@ void Experiencia :: setPrecioBase(int pbase){
     precioBase = pbase;
 }
 
-void Experiencia :: setFecha(DTFecha f){
+void Experiencia :: setFecha(const DTFecha& f){
     fecha = DTFecha(f);//se puede hacer esto?
 }
 
-void Experiencia::setParticipantes(set<string>& p){
+/*void Experiencia::setParticipantes(set<string>& p){
     participantes = p;
 }
+En el hpp puse por que creo que no iria    
+*/

@@ -17,8 +17,8 @@ class Experiencia{
 
         std::set<Turista*> participantes; //este es el link a Turistas desde Experiencia
     public:
-        Experiencia();
         Experiencia(std::string codigo, std::string desc, int precio, DTFecha f);
+        Experiencia();
         virtual ~Experiencia();
     
         std::string getCodigoReserva() const;
