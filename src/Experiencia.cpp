@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
-#include "Experiencia.h"
-#include "Turista.h" // PENSAR SI SE INCLUYE
+#include "Experiencia.hpp"
+#include "Turista.hpp" // PENSAR SI SE INCLUYE
 
 #include "Experiencia.hpp"
 
