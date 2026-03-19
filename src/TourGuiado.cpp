@@ -12,12 +12,6 @@ TourGuiado::TourGuiado(string cod, string desc, int precio, DTFecha f, string ag
     cantTuristas = cantT;
 }
 
-TourGuiado::TourGuiado(TourGuiado& tour): Experiencia(tour.getCodigoReserva(),tour.getDescripcion(),tour.getPrecioBase(),tour.getFecha()){
-    agencia = tour.agencia;
-    lugaresVisitados = tour.lugaresVisitados;
-    cantLugares = tour.cantLugares;
-    cantTuristas = tour.cantTuristas;
-}
 TourGuiado::~TourGuiado() {}
 
 string TourGuiado::getAgencia() {

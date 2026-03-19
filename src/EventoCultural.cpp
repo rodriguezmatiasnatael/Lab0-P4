@@ -21,5 +21,9 @@ bool getUsoCupon() {
 }
 
 float EventoCultural::calcularCosto() {
-    return 0;
+    if (usoCupon) {
+        return getParticipantes().size()*(getPrecioBase()-5);
+    } else {
+        return getParticipantes().size()*getPrecioBase();
+    }
 }
