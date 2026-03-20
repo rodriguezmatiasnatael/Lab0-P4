@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
-#include "EventoCultural.h"
-#include "Turista.h"
-#include "Experiencia.h"
+#include "EventoCultural.hpp"
+#include "Turista.hpp"
+#include "Experiencia.hpp"
 
 EventoCultural::EventoCultural(std::string cod, std::string desc, int precio, DTFecha f, std::string ubi, bool cupon) :
     Experiencia(cod, desc, precio, f),
@@ -12,18 +12,12 @@ EventoCultural::EventoCultural(std::string cod, std::string desc, int precio, DT
 
 EventoCultural::~EventoCultural() {}
 
-std::string getUbicacion() {
-    return this->ubicacion
-}
-
-bool getUsoCupon() {
-    return this->usoCupon;
-}
-
 float EventoCultural::calcularCosto() {
-    if (usoCupon) {
-        return getParticipantes().size()*(getPrecioBase()-5);
-    } else {
-        return getParticipantes().size()*getPrecioBase();
+    if (usoCupon){
+        //preciobase*cantidadturistas - 5*cantidadturistas;
+        return getPrecioBase()*getParticipantes().size() - 5*getParticipantes().size();
+    } 
+    else {
+        return getPrecioBase()*getParticipantes().size();
     }
 }
