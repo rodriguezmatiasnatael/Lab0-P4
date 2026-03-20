@@ -2,7 +2,7 @@
 #include <string>
 #include "Experiencia.hpp"
 #include "Turista.hpp" // PENSAR SI SE INCLUYE
-
+#include "DTExpe.hpp"
 #include "Experiencia.hpp"
 
 Experiencia::Experiencia(std::string codigo, std::string desc, int precio, DTFecha f, std::set<std::string> p) 
@@ -14,15 +14,6 @@ Experiencia::Experiencia(std::string codigo, std::string desc, int precio, DTFec
 {}
 
 Experiencia::~Experiencia() {}
-
-
-std::string Experiencia::getCodigoReserva() const{
-    return codigoReserva;
-}
-
-std::string Experiencia::getDescripcion() const{
-    return descripcion;
-}
 
 int Experiencia::getPrecioBase() const {
     return precioBase;
@@ -40,20 +31,20 @@ DTExpe Experiencia::getDT() {
     return DTExpe(codigoReserva, descripcion, precioBase, fecha, participantes);
 }
 
-void Experiencia::setCodigoReserva(const std::string& codigo){
-    codigoReserva = codigo;
+bool eliminarParticipante(Turista * t) {
+    if (t == nullptr) {
+        return false
+    } else {
+        return participantes.erase(t) > 0;
+    }
 }
 
-void Experiencia :: setDescripcion(const std::string& desc){
-    descripcion = desc;
-}
-
-void Experiencia :: setPrecioBase(int pbase){
-    precioBase = pbase;
-}
-
-void Experiencia :: setFecha(const DTFecha& f){
-    fecha = DTFecha(f);//se puede hacer esto?
+bool agregarParticipante(Turista * t) {
+    if (t == nullptr) {
+        return false
+    } else {
+        return turistas.insert(t).second;
+    }
 }
 
 /*void Experiencia::setParticipantes(set<string>& p){

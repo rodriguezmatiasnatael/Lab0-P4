@@ -14,27 +14,22 @@ class Experiencia{
         std::string descripcion;
         int precioBase;
         DTFecha fecha;
-        std::set<std::string> participantes; //este es el link a Turistas desde Experiencia
+        std::set<Turistas*> participantes; //este es el link a Turistas desde Experiencia
     public:
-        
     
         Experiencia(std::string codigo, std::string desc, int precio, DTFecha f);
-        Experiencia();
         virtual ~Experiencia();
     
-        std::string getCodigoReserva() const;
-        std::string getDescripcion()const;
         int getPrecioBase() const;
         std::set<Turista*> getParticipantes();
-        DTFecha getFecha() const; 
+        DTFecha getFecha() const;
         DTExpe getDT() const;
 
-        void setCodigoReserva(const std::string& codigo); 
-        void setDescripcion(const std::string& desc);
-        void setPrecioBase(int precio);
-        void setFecha(const DTFecha& f);
+        bool eliminarParticipante(Turista* t);
+        bool agregarParticipante(Turista* t);
 
         virtual float calcularCosto() = 0; //El = 0 obliga a que sea abstracto
+
 };
 
 #endif
