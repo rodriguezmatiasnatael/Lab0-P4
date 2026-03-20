@@ -6,14 +6,12 @@ private:
     int dia, mes, anio;
 public:
     DTFecha(int d, int m, int a);
-    DTFecha();
+    DTFecha(DTFecha& f);
     ~DTFecha();
-    
-    int getD() const;
-    int getM() const;
-    int getA() const;
 
-    bool operator>(const DTFecha& otra) const;
+
+    DTFecha operator =(const DTFecha & otra) const;
+    bool operator>=(const DTFecha& otra) const;
 };
 
 #endif
