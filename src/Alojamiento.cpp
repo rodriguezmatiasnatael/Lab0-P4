@@ -3,11 +3,12 @@
 #include "Alojamiento.hpp"
 #include "TipoRegimen.hpp"
 
-Alojamiento::Alojamiento(string cod,string desc, int precio, DTFecha f, string h, TipoRegimen reg, int cant) : Experiencia(cod, desc, precio, f){
-    hotel = h;
-    regimen = reg;
-    cantNoches = cant;
-}
+Alojamiento::Alojamiento(std::string cod, std::string desc, int precio, DTFecha f, std::string h, TipoRegimen reg, int cant) : 
+    Experiencia(cod, desc, precio, f),
+    hotel(h),
+    regimen(reg),
+    cantNoches(cant)
+{}
 
 Alojamiento::~Alojamiento() {}
 

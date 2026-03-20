@@ -6,7 +6,7 @@ private:
     int dia, mes, anio;
 public:
     DTFecha(int d, int m, int a);
-    DTFecha(DTFecha& f);
+    DTFecha(const DTFecha& f);
     ~DTFecha();
 
 
