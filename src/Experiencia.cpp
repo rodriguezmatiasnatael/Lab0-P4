@@ -18,7 +18,7 @@ int Experiencia::getPrecioBase() const {
     return precioBase;
 }
 
-DTFecha Experiencia :: getFecha() const{
+const DTFecha& Experiencia::getFecha() const {
     return fecha;
 }
 

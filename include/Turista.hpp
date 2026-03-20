@@ -3,7 +3,6 @@
 
 #include <string>
 #include <set>
-#include <vector>
 #include "DTFecha.hpp"
 
 class Experiencia; // Forward declaration para evitar inclusión circular
@@ -13,7 +12,7 @@ class Turista {
         std::string ci;
         std::string nombre;
         std::string email;
-        std::vector<Experiencia*> experiencias; // Relación 1..* a *
+        std::set<Experiencia*> experiencias; // Relación 1..* a *
 
     public:
         Turista(std::string ci, std::string nombre, std::string email);

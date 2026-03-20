@@ -1,48 +1,25 @@
 #include <iostream>
 #include <string>
-#include "Turista.h"
+#include <set>
+#include "../include/Turista.hpp"
 
-using namespace std;
+Turista :: Turista (std::string ci, std::string nombre, std::string email) : 
+  ci(ci),
+  nombre(nombre),
+  email(email)
+{}
 
-Turista :: Turista(string ci,string nombre,string email,Experiencia* experiencias){
-  this->ci = ci;
-  this->nombre = nombre;
-  this->email = email;
-  this->experiencias = experiencias;
-
-}
-
-string Turista :: getCi(){
+std::string Turista :: getCI () const {
   return ci;
 }
 
-string Turista :: getNombre(){
-  return nombre;
-}
-
-string Turista :: getEmail(){
-  return email;
-}
-
-void Turista :: setCi(string ci){
-  this->ci = ci;
-}
-
-void Turista :: setNombre(string nombre){
-  this->nombre = nombre;
-}
-
-void Turista :: setEmail(string email){
-  this->email = email;
-}
-
-string Turista :: toString(){
-  string sCi = getCi();
-  string sflecha = "->";
-  string sNom = getNombre();  
-  string sBarra = "/";
-  string sEmail = getEmail();
-  string total = sCi + sflecha + sNom + sBarra + sEmail;
+std::string Turista :: toString(){
+  std::string sCi = ci;
+  std::string sflecha = "->";
+  std::string sNom = nombre;  
+  std::string sBarra = "/";
+  std::string sEmail = email;
+  std::string total = sCi + sflecha + sNom + sBarra + sEmail;
                                         //VER SI VA EL . AL FINAL DE LA CADENA
   return total;
 }
