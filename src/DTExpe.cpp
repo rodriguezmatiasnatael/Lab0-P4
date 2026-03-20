@@ -1,7 +1,15 @@
 #include <iostream>
 #include <string>
 #include "DTExpe.hpp"
+#include "DTFecha.hpp"
 
-DTExpe::DTExpe(std::string codigoReserva, std::string descripcion, DTFecha fecha, std::set<std::string> turistas) : {
 
-}
+DTExpe::DTExpe(std::string codigo, std::string desc, DTFecha f, std::set<std::string> turistas) :  
+    codigoReserva(codigo),
+    descripcion(desc),
+    fecha(f),
+    turistas(turistas)
+{}
+
+DTExpe::~DTExpe() {}
+
