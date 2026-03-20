@@ -8,38 +8,8 @@ Alojamiento::Alojamiento(string cod,string desc, int precio, DTFecha f, string h
     regimen = reg;
     cantNoches = cant;
 }
-Alojamiento :: Alojamiento(Alojamiento& a): Experiencia(a.getCodigoReserva(),a.getDescripcion(),a.getPrecioBase(),a.getFecha()){
-    hotel = a.hotel;
-    regimen = a.regimen;
-    cantNoches = a.cantNoches;
-}
 
 Alojamiento::~Alojamiento() {}
-
-string Alojamiento::getHotel() {
-    return hotel;
-}
-
-TipoRegimen Alojamiento::getRegimen() {
-    return regimen;
-}
-
-int Alojamiento::getCantNoches() {
-    return cantNoches;
-}
-
-void Alojamiento::setHotel(string h){
-    hotel = h;
-}
-
-void Alojamiento::setRegimen(TipoRegimen r){
-    regimen = r;
-}
-
-void Alojamiento::setCantNoches(int cant){
-    cantNoches = cant;
-}
-
 
 float Alojamiento::calcularCosto() {
     if (regimen == TipoRegimen::AllInclusive) {
