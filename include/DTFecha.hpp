@@ -9,7 +9,6 @@ public:
     DTFecha(const DTFecha& f);
     ~DTFecha();
 
-
     DTFecha operator =(const DTFecha & otra) const;
     bool operator>=(const DTFecha& otra) const;
 };
