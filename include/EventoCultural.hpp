@@ -11,9 +11,6 @@ class EventoCultural : public Experiencia {
         EventoCultural(std::string cod, std::string desc, int precio, DTFecha f, std::string ubi, bool cupon);
         ~EventoCultural() override;
 
-        std::string getUbicacion();
-        bool getUsoCupon();
-        
         float calcularCosto() override;
 };
 
