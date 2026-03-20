@@ -5,12 +5,11 @@
 #include "DTExpe.hpp"
 #include "Experiencia.hpp"
 
-Experiencia::Experiencia(std::string codigo, std::string desc, int precio, DTFecha f, std::set<std::string> p) 
-    : codigoReserva(codigo), 
-      descripcion(desc), 
-      precioBase(precio), 
-      fecha(f),
-      participantes(p)
+Experiencia::Experiencia(std::string codigo, std::string desc, int precio, DTFecha f) :
+    codigoReserva(codigo), 
+    descripcion(desc), 
+    precioBase(precio), 
+    fecha(f)
 {}
 
 Experiencia::~Experiencia() {}
@@ -23,27 +22,31 @@ DTFecha Experiencia :: getFecha() const{
     return fecha;
 }
 
-set<Turista*>& Experiencia::getParticipantes(){
+std::set<Turista*> Experiencia::getParticipantes(){
     return participantes;
 }
 
-DTExpe Experiencia::getDT() {
-    return DTExpe(codigoReserva, descripcion, precioBase, fecha, participantes);
+DTExpe Experiencia::getDT() const {
+    std::set<std::string> turistas;
+    for (Turista* t : participantes) {
+        turistas.insert(t->getCI());
+    };
+    return DTExpe(codigoReserva, descripcion, fecha, turistas);
 }
 
-bool eliminarParticipante(Turista * t) {
+bool Experiencia::eliminarParticipante(Turista * t) {
     if (t == nullptr) {
-        return false
+        return false;
     } else {
         return participantes.erase(t) > 0;
     }
 }
 
-bool agregarParticipante(Turista * t) {
+bool Experiencia::agregarParticipante(Turista * t) {
     if (t == nullptr) {
-        return false
+        return false;
     } else {
-        return turistas.insert(t).second;
+        return participantes.insert(t).second;
     }
 }
 

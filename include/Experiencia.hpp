@@ -14,7 +14,7 @@ class Experiencia{
         std::string descripcion;
         int precioBase;
         DTFecha fecha;
-        std::set<Turistas*> participantes; //este es el link a Turistas desde Experiencia
+        std::set<Turista*> participantes; //este es el link a Turistas desde Experiencia
     public:
     
         Experiencia(std::string codigo, std::string desc, int precio, DTFecha f);

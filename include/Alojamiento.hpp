@@ -6,19 +6,19 @@
 
 class Alojamiento : public Experiencia {
     private:
-        string hotel;
+        std::string hotel;
         TipoRegimen regimen;
         int cantNoches;
     public:
-        Alojamiento(string, string, int, DTFecha,string, TipoRegimen, int);
+        Alojamiento(std::string, std::string, int, DTFecha, std::string, TipoRegimen, int);
         Alojamiento(Alojamiento&);
         ~Alojamiento() override;
         
-        string getHotel();
+        std::string getHotel();
         TipoRegimen getRegimen();
         int getCantNoches();
 
-        void setHotel(string);
+        void setHotel(std::string);
         void setRegimen(TipoRegimen);
         void setCantNoches(int);
 

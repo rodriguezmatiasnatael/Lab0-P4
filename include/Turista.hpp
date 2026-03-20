@@ -17,6 +17,9 @@ class Turista {
 
     public:
         Turista(std::string ci, std::string nombre, std::string email);
+
+        std::string getCI() const; //agregué esto porque lo necesito en Experiencia.cpp
+
         std::string toString();
         std::set<std::string> listarExperiencias(DTFecha desde, float min, float max);
 };
