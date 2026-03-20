@@ -18,7 +18,11 @@ int Experiencia::getPrecioBase() const {
     return precioBase;
 }
 
-DTFecha Experiencia :: getFecha() const{
+std::string Experiencia::getCodigoReserva() const{
+    return codigoReserva;
+}
+
+const DTFecha& Experiencia :: getFecha() const{
     return fecha;
 }
 
@@ -28,11 +32,27 @@ std::set<Turista*> Experiencia::getParticipantes(){
 
 DTExpe Experiencia::getDT() const {
     std::set<std::string> turistas;
-    for (Turista* t : participantes) {
-        turistas.insert(t->getCI());
+    for (Turista* t : participantes) {             //   <- creo que esa forma no esta permitida    ///
+        turistas.insert(t->getCi());
     };
     return DTExpe(codigoReserva, descripcion, fecha, turistas);
 }
+
+/*
+///////me parece que el for que comente arriba no esta permitido porque tiene que compilar con 
+///////el -std=c++98, la forma tengo entendido que se puede usar es iterando como en el codigo de abajo. 
+/////// lo dejo comentado porque el responsable de esto era Pablo y no quiero pisarlo 
+
+
+DTExpe Experiencia::getDT() const {
+    std::set<std::string> turistas;
+    for (std::set<Turista*>::const_iterator it = participantes.begin(); it != participantes.end(); ++it) {
+        Turista* t = *it;
+        turistas.insert(t->getCi());
+    }
+    return DTExpe(this->codigoReserva, this->descripcion, this->fecha, turistas);
+}
+*/
 
 bool Experiencia::eliminarParticipante(Turista * t) {
     if (t == nullptr) {

@@ -21,8 +21,9 @@ class Experiencia{
         virtual ~Experiencia();
     
         int getPrecioBase() const;
+        std::string getCodigoReserva() const;
         std::set<Turista*> getParticipantes();
-        DTFecha getFecha() const;
+        const DTFecha& getFecha() const;
         DTExpe getDT() const;
 
         bool eliminarParticipante(Turista* t);

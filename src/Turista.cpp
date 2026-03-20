@@ -1,48 +1,72 @@
-#include <iostream>
-#include <string>
-#include "Turista.h"
+#include "Turista.hpp"
+#include "Experiencia.hpp"
 
-using namespace std;
+//Turista::Turista(); No se si es necesario para algo, mientras tanto lo dejo comentado
 
-Turista :: Turista(string ci,string nombre,string email,Experiencia* experiencias){
-  this->ci = ci;
-  this->nombre = nombre;
-  this->email = email;
-  this->experiencias = experiencias;
-
+Turista::Turista(const std::string& ci,const std::string& nombre,const std::string& email){
+    this->ci = ci;
+    this->nombre = nombre;
+    this->email = email;
 }
 
-string Turista :: getCi(){
-  return ci;
+Turista::~Turista() {
+    for(std::set<Experiencia*>::iterator it = experiencias.begin(); it != experiencias.end(); ++it) {
+        (*it)->eliminarParticipante(this); 
+    }
+    experiencias.clear();
 }
 
-string Turista :: getNombre(){
-  return nombre;
+std::string Turista::getCi() const{
+    return ci;
 }
 
-string Turista :: getEmail(){
-  return email;
+std::string Turista::getNombre() const{
+    return nombre;
+}
+std::string Turista::getEmail() const{
+    return email;
 }
 
-void Turista :: setCi(string ci){
-  this->ci = ci;
+
+void Turista::setCi(const std::string& ci){
+    this->ci = ci;
 }
 
-void Turista :: setNombre(string nombre){
-  this->nombre = nombre;
+void Turista::setNombre(const std::string& nombre){
+    this->nombre = nombre;
+    }
+
+void Turista::setEmail(const std::string& email){
+    this->email = email;
 }
 
-void Turista :: setEmail(string email){
-  this->email = email;
+std::string Turista::toString() const{
+    return ci+"->"+nombre+"/"+email;
 }
 
-string Turista :: toString(){
-  string sCi = getCi();
-  string sflecha = "->";
-  string sNom = getNombre();  
-  string sBarra = "/";
-  string sEmail = getEmail();
-  string total = sCi + sflecha + sNom + sBarra + sEmail;
-                                        //VER SI VA EL . AL FINAL DE LA CADENA
-  return total;
+std::set<std::string> Turista::listarExperiencias(const DTFecha& desde, float min, float max) const{
+    std::set<std::string> res;
+    for(std::set<Experiencia*>::const_iterator it = experiencias.begin(); it != experiencias.end(); ++it){
+        Experiencia* e = *it;
+        if(e->getFecha() >= desde){
+            float costo = e->calcularCosto();
+            if(costo >= min && costo <= max){
+                res.insert(e->getCodigoReserva());
+            }
+        }
+    }
+    return res;
 }
+
+void Turista::agregarExperiencia(Experiencia* e){
+    experiencias.insert(e);
+    e->agregarParticipante(this);
+}
+
+void Turista::removerExperiencia(Experiencia* e){
+    if(experiencias.find(e) != experiencias.end()){
+        experiencias.erase(e);
+        e->eliminarParticipante(this);
+    }
+}
+
