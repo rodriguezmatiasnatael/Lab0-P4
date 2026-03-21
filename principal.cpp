@@ -1,42 +1,57 @@
-/*
+
 #include <iostream>
 #include <list>
 #include <map>
 
-std::list<Experiencia*> experiencias;
-std::map<std::string, Experiencia*> map_experiencias;
+#include "include/Experiencia.hpp"
+#include "include/Alojamiento.hpp"
+#include "include/EventoCultural.hpp"
+#include "include/DTFecha.hpp"
+#include "include/DTExpe.hpp"
+#include "include/Turista.hpp"
+#include "include/TipoRegimen.hpp"
 
-std::list<Turista*> turistas;
-std::map<std::string, Turista*> map_turistas;
 
-void coleccion_guardarExperiencia(Experiencia* exp){
-	experiencias.push_back(exp);
-	std::pair<std::string, Experiencia*> entry(exp->getCodigoReserva(), exp);
-    map_experiencias.insert(entry);
-}
-void coleccion_eliminarExperiencia(Experiencia* exp){
-	experiencias.remove(exp);
-	map_experiencias.erase(exp->getCodigoReserva());
-}
+// std::list<Experiencia*> experiencias;
+// std::map<std::string, Experiencia*> map_experiencias;
 
-void coleccion_guardarTurista(Turista* tur){
-	turistas.push_back(tur);
-	std::pair<std::string, Turista*> entry(tur->getCi(), tur);
-    map_turistas.insert(entry);
-}
+// std::list<Turista*> turistas;
+// std::map<std::string, Turista*> map_turistas;
 
-Turista* coleccion_getTurista(std::string ci){
-	return map_turistas[ci];
-}
+// void coleccion_guardarExperiencia(Experiencia* exp){
+// 	experiencias.push_back(exp);
+// 	std::pair<std::string, Experiencia*> entry(exp->getCodigoReserva(), exp);
+//     map_experiencias.insert(entry);
+// }
+// void coleccion_eliminarExperiencia(Experiencia* exp){
+// 	experiencias.remove(exp);
+// 	map_experiencias.erase(exp->getCodigoReserva());
+// }
 
-Experiencia* coleccion_getExperiencia(std::string codigoReserva){
-	return map_experiencias[codigoReserva];
-}
+// void coleccion_guardarTurista(Turista* tur){
+// 	turistas.push_back(tur);
+// 	std::pair<std::string, Turista*> entry(tur->getCi(), tur);
+//     map_turistas.insert(entry);
+// }
+
+// Turista* coleccion_getTurista(std::string ci){
+// 	return map_turistas[ci];
+// }
+
+// Experiencia* coleccion_getExperiencia(std::string codigoReserva){
+// 	return map_experiencias[codigoReserva];
+// }
 
 void parte_a(){
+	DTFecha fecha1 = DTFecha(18, 5, 2020);
+	Alojamiento alojamiento1 = Alojamiento("ALX53", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
+
+	DTFecha fecha1 = DTFecha(18, 5, 2020);
+	Alojamiento alojamiento1 = Alojamiento("ALX53", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
 }
 
 void parte_b(){
+	
 }
 
 void parte_c(){
@@ -98,4 +113,3 @@ int main() {
 
 	return 0;
 }
-*/

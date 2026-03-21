@@ -1,3 +1,5 @@
+#include <string>
+
 #ifndef DTFECHA_HPP
 #define DTFECHA_HPP
 
@@ -12,6 +14,8 @@ public:
     
     ~DTFecha();
 	
+    std::string toString() const;
+
     DTFecha& operator=(const DTFecha& f);   // Se quita 'const' del final en la asignación para permitir modificar el objeto. 
     bool operator>=(const DTFecha& otra) const;
 };

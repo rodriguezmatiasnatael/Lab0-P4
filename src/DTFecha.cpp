@@ -6,6 +6,14 @@ DTFecha::DTFecha(const DTFecha& f) : dia(f.dia), mes(f.mes), anio(f.anio) {}
 
 DTFecha::~DTFecha() {}
 
+std::string DTFecha::toString() const {
+    std::string strD = std::to_string(dia);
+    std::string strM = std::to_string(mes);
+    std::string strA = std::to_string(anio);
+
+    return strD + "/" + strM + "/" + strA;
+}
+
 DTFecha& DTFecha::operator=(const DTFecha& f) {
     if (this != &f) { 
         dia = f.dia;
