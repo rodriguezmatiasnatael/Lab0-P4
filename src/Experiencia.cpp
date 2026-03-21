@@ -34,7 +34,7 @@ DTExpe Experiencia::getDT() const {
     std::set<std::string> turistas;
     for (std::set<Turista*>::const_iterator it = participantes.begin(); it != participantes.end(); ++it) {
         Turista* t = *it;
-        turistas.insert(t->getCi());
+        turistas.insert(t->getNombre());
     }
     return DTExpe(this->codigoReserva, this->descripcion, this->fecha, turistas);
 }
