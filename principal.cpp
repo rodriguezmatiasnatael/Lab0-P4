@@ -42,6 +42,8 @@
 // 	return map_experiencias[codigoReserva];
 // }
 
+std::list<Experiencia*> listaExp; ///esta lista contiene las distintas experiencias que se crean en a, b y c para mostrarlas en d
+
 void parte_a(){
 	DTFecha fecha1 = DTFecha(18, 5, 2020);
 	Alojamiento alojamiento1 = Alojamiento("ALX53", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
@@ -58,6 +60,10 @@ void parte_c(){
 }
 
 void parte_d(){
+	std::list<Experiencia*>::iterator it;
+	for (it = listaExp.begin(); it != listaExp.end(); ++it) {
+    	std::cout << (*it)->getDT() << std::endl;
+	}
 }
 
 void parte_e(){
