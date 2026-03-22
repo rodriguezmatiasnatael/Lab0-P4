@@ -44,14 +44,30 @@
 // }
 
 std::list<Experiencia*> listaExp; ///esta lista contiene las distintas experiencias que se crean en a, b y c para mostrarlas en d
+std::list<Turista*> listaTur; // esta Lista contiene los turistas
 
+Turista* buscarTurista(std::string ci) {  ///Esta funcion busca al turista en la lista
+    std:: list<Turista*>::iterator it;
+    for (it = listaTur.begin(); it != listaTur.end(); ++it) {
+        if ((*it)->getCi() == ci) return *it;
+    }
+    return NULL;
+}
+
+Experiencia* buscarExperiencia(std::string cod) { // Esta funcion busca la experiencia en la lista
+    std::list<Experiencia*>::iterator it;
+    for (it = listaExp.begin(); it != listaExp.end(); ++it) {
+        if ((*it)->getCodigoReserva() == cod) return *it;
+    }
+    return NULL;
+}
 
 void parte_a(){
     DTFecha fecha1 = DTFecha(18, 5, 2020);
     Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
     listaExp.push_back(alojamiento1);
 
-    DTFecha fecha2 = DTFecha(10, 02, 2025);
+    DTFecha fecha2 = DTFecha(10, 2, 2025);
     Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
     listaExp.push_back(alojamiento2);
 }
@@ -87,13 +103,31 @@ void parte_d(){
 	}
 }
 
-void parte_e(){
+void parte_e() {
+    Turista* t1 = new Turista("4.951.278-9", "Vanesa Castro", "vcastro.uy@servidor.net");
+    listaTur.push_back(t1);
+    Turista* t2 = new Turista("1.535.442-0", "Karen Santos", "karen.s89@internet.uy");
+    listaTur.push_back(t2);
 }
 
-void parte_f(){
+void parte_f() {
+    std::list<Turista*>::iterator it;
+    for (it = listaTur.begin(); it != listaTur.end(); ++it) {
+        std::cout << (*it)->toString() << std::endl;
+    }
 }
 
-void parte_g(){
+void parte_g() {
+    Turista* vanesa = buscarTurista("4.951.278-9");
+    Turista* karen = buscarTurista("1.535.442-0");
+    Experiencia* hotelModem = buscarExperiencia("ALX5489");
+    Experiencia* tourPlazas = buscarExperiencia("TGO4657");
+    Experiencia* eventoSolis = buscarExperiencia("ECP1346");
+
+    hotelModem->agregarParticipante(vanesa);
+    tourPlazas->agregarParticipante(vanesa);
+    tourPlazas->agregarParticipante(karen);
+    eventoSolis->agregarParticipante(karen);
 }
 
 void parte_h(){
