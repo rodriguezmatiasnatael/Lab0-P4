@@ -148,12 +148,34 @@ void parte_h() {
 }
 
 void parte_i(){
+    Experiencia* borrar = buscarExp("TGR3257");
+    
+    //al hacer delete llamamos al destructor por despacho y luego se libera memoria
+    //en el destructor de experiencia se borra todas las relaciones de esa experiencia
+    //con sus turistas participantes
+    if(borrar != NULL){
+        listaExp.remove(borrar);
+        delete borrar;
+    }
 }
 
 void parte_j(){
+    Turista* karen = buscarTur("1.535.442-0");
+    if (karen != NULL) {
+        DTFecha fechaFiltro(10, 10, 2020);
+        std::set<std::string> resultados = karen->listarExperiencias(fechaFiltro, 0, 1000);
+        std::set<std::string>::iterator it;
+        for (it = resultados.begin(); it != resultados.end(); ++it){
+            std::cout << *it << std::endl;
+        }
+    }
 }
 
 void parte_k(){
+    std::list<Experiencia*>::iterator it;
+	for (it = listaExp.begin(); it != listaExp.end(); ++it){
+    	std::cout << (*it)->getDT() << std::endl;
+	}
 }
 
 void cleanUp(){
