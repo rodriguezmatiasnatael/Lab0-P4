@@ -12,7 +12,13 @@ Experiencia::Experiencia(std::string codigo, std::string desc, int precio, DTFec
     fecha(f)
 {}
 
-Experiencia::~Experiencia() {}
+//liberamos la referencia de experiencia en todos los turistas que la contengan
+Experiencia::~Experiencia() {
+    std::set<Turista*>::iterator it;
+    for(it = participantes.begin(); it != participantes.end(); ++it){
+        (*it)->removerExperiencia(this);
+    }
+}
 
 int Experiencia::getPrecioBase() const {
     return precioBase;
