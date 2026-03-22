@@ -46,7 +46,7 @@
 std::list<Experiencia*> listaExp; ///esta lista contiene las distintas experiencias que se crean en a, b y c para mostrarlas en d
 std::list<Turista*> listaTur; // esta Lista contiene los turistas
 
-Turista* buscarTurista(std::string ci) {  ///Esta funcion busca al turista en la lista
+Turista* buscarTur(std::string ci) {  ///Esta funcion busca al turista en la lista
     std:: list<Turista*>::iterator it;
     for (it = listaTur.begin(); it != listaTur.end(); ++it) {
         if ((*it)->getCi() == ci) return *it;
@@ -54,7 +54,7 @@ Turista* buscarTurista(std::string ci) {  ///Esta funcion busca al turista en la
     return NULL;
 }
 
-Experiencia* buscarExperiencia(std::string cod) { // Esta funcion busca la experiencia en la lista
+Experiencia* buscarExp(std::string cod) { // Esta funcion busca la experiencia en la lista
     std::list<Experiencia*>::iterator it;
     for (it = listaExp.begin(); it != listaExp.end(); ++it) {
         if ((*it)->getCodigoReserva() == cod) return *it;
@@ -118,11 +118,11 @@ void parte_f() {
 }
 
 void parte_g() {
-    Turista* vanesa = buscarTurista("4.951.278-9");
-    Turista* karen = buscarTurista("1.535.442-0");
-    Experiencia* hotelModem = buscarExperiencia("ALX5489");
-    Experiencia* tourPlazas = buscarExperiencia("TGO4657");
-    Experiencia* eventoSolis = buscarExperiencia("ECP1346");
+    Turista* vanesa = buscarTur("4.951.278-9");
+    Turista* karen = buscarTur("1.535.442-0");
+    Experiencia* hotelModem = buscarExp("ALX5489");
+    Experiencia* tourPlazas = buscarExp("TGO4657");
+    Experiencia* eventoSolis = buscarExp("ECP1346");
 
     hotelModem->agregarParticipante(vanesa);
     tourPlazas->agregarParticipante(vanesa);
