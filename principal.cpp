@@ -120,17 +120,31 @@ void parte_f() {
 void parte_g() {
     Turista* vanesa = buscarTur("4.951.278-9");
     Turista* karen = buscarTur("1.535.442-0");
+    
     Experiencia* hotelModem = buscarExp("ALX5489");
+    Experiencia* hotelSea = buscarExp("ALJ4789");
     Experiencia* tourPlazas = buscarExp("TGO4657");
+    Experiencia* tourPuntos = buscarExp("TGR3257");
     Experiencia* eventoSolis = buscarExp("ECP1346");
 
     hotelModem->agregarParticipante(vanesa);
-    tourPlazas->agregarParticipante(vanesa);
+    hotelSea->agregarParticipante(vanesa);
+    tourPuntos->agregarParticipante(vanesa);
+    eventoSolis->agregarParticipante(vanesa);
     tourPlazas->agregarParticipante(karen);
-    eventoSolis->agregarParticipante(karen);
+    tourPuntos->agregarParticipante(karen);
 }
 
-void parte_h(){
+void parte_h() {
+    Turista* vanesa = buscarTur("4.951.278-9");
+    if (vanesa != NULL) {
+        DTFecha fechaFiltro(10, 12, 2023);
+        std::set<std::string> resultados = vanesa->listarExperiencias(fechaFiltro, 0, 1000);
+        std::set<std::string>::iterator it;
+        for (it = resultados.begin(); it != resultados.end(); ++it) {
+            std::cout << *it << std::endl;
+        }
+    }
 }
 
 void parte_i(){
