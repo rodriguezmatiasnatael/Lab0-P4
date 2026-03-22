@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
 #include "TourGuiado.hpp"
-#include "Experiencia.hpp"
 
 using namespace std;
 
 TourGuiado::TourGuiado(std::string cod, std::string desc, int precio, DTFecha f, std::string ag,std::set<std::string> lugares) : 
     Experiencia(cod, desc, precio, f),
-    agencia(agencia),
+    agencia(ag),
     lugaresVisitados(lugares)
 {}
 

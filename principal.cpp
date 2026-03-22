@@ -45,11 +45,11 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 void parte_a(){
     DTFecha fecha1 = DTFecha(18, 5, 2020);
     Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
-    experiencias.push_back(alojamiento1);
+    coleccion_guardarExperiencia(alojamiento1);
 
     DTFecha fecha2 = DTFecha(10, 2, 2025);
     Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
-    experiencias.push_back(alojamiento2);
+    coleccion_guardarExperiencia(alojamiento2);
 }
 
 void parte_b(){
@@ -59,7 +59,7 @@ void parte_b(){
     Lugares1.insert("Plaza Independencia");
     Lugares1.insert("Plaza Matriz");
     Experiencia* tour1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10, fecha3, "Paseos SA", Lugares1);
-    experiencias.push_back(tour1);
+    coleccion_guardarExperiencia(tour1);
 
     std::set<std::string> Lugares2;
     Lugares2.insert("Puerta de la Ciudadela");
@@ -67,13 +67,13 @@ void parte_b(){
     Lugares2.insert("Cabildo");
     Lugares2.insert("Palacio Salvo");
     Experiencia* tour2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5, fecha3, "Recorre", Lugares2);
-    experiencias.push_back(tour2);
+    coleccion_guardarExperiencia(tour2);
 }
 
 void parte_c(){
     DTFecha fecha4 = DTFecha(29, 10, 2025);
     Experiencia* evento1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha4, "Teatro Solis", true);
-    experiencias.push_back(evento1);
+    coleccion_guardarExperiencia(evento1);
 }
 
 void parte_d(){
@@ -85,9 +85,9 @@ void parte_d(){
 
 void parte_e() {
     Turista* t1 = new Turista("4.951.278-9", "Vanesa Castro", "vcastro.uy@servidor.net");
-    turistas.push_back(t1);
+    coleccion_guardarTurista(t1);
     Turista* t2 = new Turista("1.535.442-0", "Karen Santos", "karen.s89@internet.uy");
-    turistas.push_back(t2);
+    coleccion_guardarTurista(t2);
 }
 
 void parte_f() {
@@ -140,12 +140,7 @@ void parte_h() {
 
 void parte_i(){
 	Experiencia* tourPuntos = coleccion_getExperiencia("TGR3257");
-	std::list<Turista*>::iterator it;
-    for (it = turistas.begin(); it != turistas.end(); ++it) {
-        (*it)->removerExperiencia(tourPuntos);
-    }
 	coleccion_eliminarExperiencia(tourPuntos);
-	delete tourPuntos;
 }
 
 void parte_j(){

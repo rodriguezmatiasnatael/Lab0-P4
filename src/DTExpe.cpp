@@ -12,6 +12,22 @@ DTExpe::DTExpe(std::string codigo, std::string desc, DTFecha f, std::set<std::st
 
 DTExpe::~DTExpe() {}
 
+std::string DTExpe::getCodigoReserva() const {
+    return this->codigoReserva;
+}
+
+std::string DTExpe::getDescripcion() const {
+    return this->descripcion;
+}
+
+DTFecha DTExpe::getFecha() const {
+    return this->fecha;
+}
+
+std::set<std::string> DTExpe::getTuristas() const {
+    return this->turistas;
+}
+
 std::ostream& operator<<(std::ostream& os, const DTExpe& dt) {
     std::string strImprimir = dt.getCodigoReserva() + 
                             "->" + dt.getDescripcion() + 

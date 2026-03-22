@@ -1,27 +1,20 @@
 # --------------------------------------------------------------------
-# Makefile adaptado para Lab0 - Programación 4
-# Sin casos de prueba activos y con soporte para .hpp
+# Makefile Lab0 - Programación 4
 # --------------------------------------------------------------------
 
 all: principal
 
-.PHONY: all clean_bin clean_test clean testing entrega claves
+.PHONY: all clean clean_bin entrega claves
 
 ARCHIVO_ENTREGA=EntregaLab0.tar.gz
 
-# --- Módulos a entregar para Lab0 ---
-# Ajusta estos nombres según los archivos .cpp que tengas en /src
-ENTREGAR = Experiencia Turista Alojamiento Sistema
-
-MODULOS = $(ENTREGAR) utils
+# Módulos que tienen archivo .cpp y .hpp
+MODULOS = Alojamiento DTExpe DTFecha EventoCultural Experiencia TourGuiado Turista
 
 # Directorios
 HDIR    = include
 CPPDIR  = src
 ODIR    = obj
-INDIR   = test
-OUTDIR  = test
-SALIDADIR = test/salidas
 
 # Extensiones
 EXT = cpp
@@ -30,13 +23,11 @@ HEXT = hpp
 # Compilador y opciones
 CC = g++
 LD = g++
-# Se incluye -I$(HDIR) para que encuentre los .hpp
+# -I$(HDIR) es fundamental para que encuentre los .hpp dentro de /include
 CCFLAGS = -Wall -Werror -I$(HDIR) -g
 
-# Definición de archivos
-HS   = $(MODULOS:%=$(HDIR)/%.$(HEXT))
-CPPS = $(MODULOS:%=$(CPPDIR)/%.$(EXT))
-OS   = $(MODULOS:%=$(ODIR)/%.o)
+# Definición de archivos de objetos
+OS = $(MODULOS:%=$(ODIR)/%.o)
 
 PRINCIPAL=principal
 EJECUTABLE=principal
@@ -46,54 +37,44 @@ COMANDO_CLAVES=shasum
 
 # --- Reglas de Compilación ---
 
-$(ODIR)/$(PRINCIPAL).o:$(PRINCIPAL).$(EXT)
+# Compila el principal.cpp que está en la raíz
+$(ODIR)/$(PRINCIPAL).o: $(PRINCIPAL).$(EXT)
 	@mkdir -p $(ODIR)
-	@printf 'Compilando $(<) \n'; \
+	@printf 'Compilando principal... \n'
 	$(CC) $(CCFLAGS) -c $< -o $@
 
+# Compila los módulos de /src
 $(ODIR)/%.o: $(CPPDIR)/%.$(EXT) $(HDIR)/%.$(HEXT)
 	@mkdir -p $(ODIR)
-	@printf 'Compilando $(<) \n'; \
+	@printf 'Compilando módulo $*... \n'
 	$(CC) $(CCFLAGS) -c $< -o $@
 
+# Enlaza todo para crear el ejecutable
 $(EJECUTABLE): $(ODIR)/$(PRINCIPAL).o $(OS)
-	@printf 'Compilando y enlazando $(@) \n'; \
+	@printf 'Enlazando $(EJECUTABLE)... \n'
 	$(LD) $(CCFLAGS) $^ -o $@
 
-# --- Casos de Prueba (Vacíos para esta entrega) ---
-
-CASOS = 
-
-# Las reglas de test se mantienen estructuralmente pero no harán nada si CASOS está vacío
-$(SALIDADIR)/%.sal: $(INDIR)/%.in $(EJECUTABLE)
-	@mkdir -p $(SALIDADIR)
-
-testing: all
-	@echo "No hay casos de prueba definidos para esta entrega."
-
-# --- Entrega ---
+# --- Regla de Entrega (sin pruebas) ---
 
 $(ARCHIVO_CLAVES):
 	@rm -f $@
-	@printf 'Generando claves de entrega... \n'; \
-	$(COMANDO_CLAVES) $(ENTREGAR:%=$(CPPDIR)/%.$(EXT)) > $@
+	@printf 'Generando claves... \n'
+	# Genera claves solo de los .cpp para el control de integridad
+	@$(COMANDO_CLAVES) $(PRINCIPAL).$(EXT) $(MODULOS:%=$(CPPDIR)/%.$(EXT)) > $@
 
-claves: $(ARCHIVO_CLAVES)
-
-# Genera el .tar.gz con los .cpp y el archivo de claves
-entrega: claves
+entrega: $(ARCHIVO_CLAVES)
 	@rm -f $(ARCHIVO_ENTREGA)
-	tar zcf $(ARCHIVO_ENTREGA) $(ARCHIVO_CLAVES) -C src $(ENTREGAR:%=%.$(EXT))
-	@echo -- El archivo a entregar ha sido generado:
-	@echo $$(pwd)/$(ARCHIVO_ENTREGA)
+	# Crea el tar.gz incluyendo la estructura necesaria para que el prof haga make
+	tar zcf $(ARCHIVO_ENTREGA) Makefile $(ARCHIVO_CLAVES) $(PRINCIPAL).$(EXT) include/ src/
+	@echo "-------------------------------------------------------"
+	@echo "Archivo generado: $(ARCHIVO_ENTREGA)"
+	@echo "Contenido: Makefile, principal.cpp, carpeta include y carpeta src."
+	@echo "-------------------------------------------------------"
 
 # --- Limpieza ---
 
 clean_bin:
-	@rm -f $(EJECUTABLE) $(ODIR)/*.o
+	@rm -rf $(ODIR) $(EJECUTABLE)
 
-clean_test:
-	@rm -rf $(SALIDADIR)
-
-clean: clean_test clean_bin
-	@rm -f $(ARCHIVO_ENTREGA) $(ARCHIVO_CLAVES) *~ $(HDIR)/*~ $(CPPDIR)/*~
+clean: clean_bin
+	@rm -f $(ARCHIVO_ENTREGA) $(ARCHIVO_CLAVES)
