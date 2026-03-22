@@ -10,6 +10,7 @@
 #include "include/DTExpe.hpp"
 #include "include/Turista.hpp"
 #include "include/TipoRegimen.hpp"
+#include "include/TourGuiado.hpp"
 
 
 // std::list<Experiencia*> experiencias;
@@ -44,32 +45,39 @@
 
 std::list<Experiencia*> listaExp; ///esta lista contiene las distintas experiencias que se crean en a, b y c para mostrarlas en d
 
-void parte_a(){
-	DTFecha fecha1 = DTFecha(18, 5, 2020);
-	Alojamiento alojamiento1 = Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
 
-	DTFecha fecha2 = DTFecha(10, 02, 2025);
-	Alojamiento alojamiento2 = Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
+void parte_a(){
+    DTFecha fecha1 = DTFecha(18, 5, 2020);
+    Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
+    listaExp.push_back(alojamiento1);
+
+    DTFecha fecha2 = DTFecha(10, 02, 2025);
+    Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
+    listaExp.push_back(alojamiento2);
 }
 
 void parte_b(){
-	DTFecha fecha3 = DTFecha(29, 8, 2024);
-	std::set<std::string> Lugares1;
+    DTFecha fecha3 = DTFecha(29, 8, 2024);
+    
+    std::set<std::string> Lugares1;
     Lugares1.insert("Plaza Independencia");
     Lugares1.insert("Plaza Matriz");
-	TourGuiado TourGuiado1 = TourGuiado("TGO4657", "Plazas de Montevideo", 10, fecha3, "Paseos SA", Lugares1);
+    Experiencia* tour1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10, fecha3, "Paseos SA", Lugares1);
+    listaExp.push_back(tour1);
 
-	std::set<std::string> Lugares2;
+    std::set<std::string> Lugares2;
     Lugares2.insert("Puerta de la Ciudadela");
     Lugares2.insert("Mausoleo");
-	Lugares2.insert("Cabildo");
+    Lugares2.insert("Cabildo");
     Lugares2.insert("Palacio Salvo");
-	TourGuiado TourGuiado2 = TourGuiado("TGR3257", "Puntos emblematicos", 5, fecha3, "Recorre", Lugares2);
+    Experiencia* tour2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5, fecha3, "Recorre", Lugares2);
+    listaExp.push_back(tour2);
 }
 
 void parte_c(){
-	DTFecha fecha4 = DTFecha(29, 10, 2025);
-	EventoCultural EventoCultural1 = EventoCultural("ECP1346", "Danza en el Solis", 10, fecha4, "Teatro Solis", true);
+    DTFecha fecha4 = DTFecha(29, 10, 2025);
+    Experiencia* evento1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha4, "Teatro Solis", true);
+    listaExp.push_back(evento1);
 }
 
 void parte_d(){
