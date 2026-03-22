@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <list>
 #include <map>
@@ -13,63 +12,44 @@
 #include "include/TourGuiado.hpp"
 
 
-// std::list<Experiencia*> experiencias;
-// std::map<std::string, Experiencia*> map_experiencias;
+std::list<Experiencia*> experiencias;
+std::map<std::string, Experiencia*> map_experiencias;
 
-// std::list<Turista*> turistas;
-// std::map<std::string, Turista*> map_turistas;
+std::list<Turista*> turistas;
+std::map<std::string, Turista*> map_turistas;
 
-// void coleccion_guardarExperiencia(Experiencia* exp){
-// 	experiencias.push_back(exp);
-// 	std::pair<std::string, Experiencia*> entry(exp->getCodigoReserva(), exp);
-//     map_experiencias.insert(entry);
-// }
-// void coleccion_eliminarExperiencia(Experiencia* exp){
-// 	experiencias.remove(exp);
-// 	map_experiencias.erase(exp->getCodigoReserva());
-// }
-
-// void coleccion_guardarTurista(Turista* tur){
-// 	turistas.push_back(tur);
-// 	std::pair<std::string, Turista*> entry(tur->getCi(), tur);
-//     map_turistas.insert(entry);
-// }
-
-// Turista* coleccion_getTurista(std::string ci){
-// 	return map_turistas[ci];
-// }
-
-// Experiencia* coleccion_getExperiencia(std::string codigoReserva){
-// 	return map_experiencias[codigoReserva];
-// }
-
-std::list<Experiencia*> listaExp; ///esta lista contiene las distintas experiencias que se crean en a, b y c para mostrarlas en d
-std::list<Turista*> listaTur; // esta Lista contiene los turistas
-
-Turista* buscarTur(std::string ci) {  ///Esta funcion busca al turista en la lista
-    std:: list<Turista*>::iterator it;
-    for (it = listaTur.begin(); it != listaTur.end(); ++it) {
-        if ((*it)->getCi() == ci) return *it;
-    }
-    return NULL;
+void coleccion_guardarExperiencia(Experiencia* exp){
+	experiencias.push_back(exp);
+	std::pair<std::string, Experiencia*> entry(exp->getCodigoReserva(), exp);
+    map_experiencias.insert(entry);
+}
+void coleccion_eliminarExperiencia(Experiencia* exp){
+	experiencias.remove(exp);
+	map_experiencias.erase(exp->getCodigoReserva());
 }
 
-Experiencia* buscarExp(std::string cod) { // Esta funcion busca la experiencia en la lista
-    std::list<Experiencia*>::iterator it;
-    for (it = listaExp.begin(); it != listaExp.end(); ++it) {
-        if ((*it)->getCodigoReserva() == cod) return *it;
-    }
-    return NULL;
+void coleccion_guardarTurista(Turista* tur){
+	turistas.push_back(tur);
+	std::pair<std::string, Turista*> entry(tur->getCi(), tur);
+    map_turistas.insert(entry);
+}
+
+Turista* coleccion_getTurista(std::string ci){
+	return map_turistas[ci];
+}
+
+Experiencia* coleccion_getExperiencia(std::string codigoReserva){
+	return map_experiencias[codigoReserva];
 }
 
 void parte_a(){
     DTFecha fecha1 = DTFecha(18, 5, 2020);
     Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
-    listaExp.push_back(alojamiento1);
+    experiencias.push_back(alojamiento1);
 
     DTFecha fecha2 = DTFecha(10, 2, 2025);
     Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
-    listaExp.push_back(alojamiento2);
+    experiencias.push_back(alojamiento2);
 }
 
 void parte_b(){
@@ -79,7 +59,7 @@ void parte_b(){
     Lugares1.insert("Plaza Independencia");
     Lugares1.insert("Plaza Matriz");
     Experiencia* tour1 = new TourGuiado("TGO4657", "Plazas de Montevideo", 10, fecha3, "Paseos SA", Lugares1);
-    listaExp.push_back(tour1);
+    experiencias.push_back(tour1);
 
     std::set<std::string> Lugares2;
     Lugares2.insert("Puerta de la Ciudadela");
@@ -87,58 +67,69 @@ void parte_b(){
     Lugares2.insert("Cabildo");
     Lugares2.insert("Palacio Salvo");
     Experiencia* tour2 = new TourGuiado("TGR3257", "Puntos emblematicos", 5, fecha3, "Recorre", Lugares2);
-    listaExp.push_back(tour2);
+    experiencias.push_back(tour2);
 }
 
 void parte_c(){
     DTFecha fecha4 = DTFecha(29, 10, 2025);
     Experiencia* evento1 = new EventoCultural("ECP1346", "Danza en el Solis", 10, fecha4, "Teatro Solis", true);
-    listaExp.push_back(evento1);
+    experiencias.push_back(evento1);
 }
 
 void parte_d(){
 	std::list<Experiencia*>::iterator it;
-	for (it = listaExp.begin(); it != listaExp.end(); ++it) {
+	for (it = experiencias.begin(); it != experiencias.end(); ++it) {
     	std::cout << (*it)->getDT() << std::endl;
 	}
 }
 
 void parte_e() {
     Turista* t1 = new Turista("4.951.278-9", "Vanesa Castro", "vcastro.uy@servidor.net");
-    listaTur.push_back(t1);
+    turistas.push_back(t1);
     Turista* t2 = new Turista("1.535.442-0", "Karen Santos", "karen.s89@internet.uy");
-    listaTur.push_back(t2);
+    turistas.push_back(t2);
 }
 
 void parte_f() {
     std::list<Turista*>::iterator it;
-    for (it = listaTur.begin(); it != listaTur.end(); ++it) {
+    for (it = turistas.begin(); it != turistas.end(); ++it) {
         std::cout << (*it)->toString() << std::endl;
     }
 }
 
 void parte_g() {
-    Turista* vanesa = buscarTur("4.951.278-9");
-    Turista* karen = buscarTur("1.535.442-0");
+    Turista* vanesa = coleccion_getTurista("4.951.278-9");
+    Turista* karen = coleccion_getTurista("1.535.442-0");
     
-    Experiencia* hotelModem = buscarExp("ALX5489");
-    Experiencia* hotelSea = buscarExp("ALJ4789");
-    Experiencia* tourPlazas = buscarExp("TGO4657");
-    Experiencia* tourPuntos = buscarExp("TGR3257");
-    Experiencia* eventoSolis = buscarExp("ECP1346");
+    Experiencia* hotelModem = coleccion_getExperiencia("ALX5489");
+    Experiencia* hotelSea = coleccion_getExperiencia("ALJ4789");
+    Experiencia* tourPlazas = coleccion_getExperiencia("TGO4657");
+    Experiencia* tourPuntos = coleccion_getExperiencia("TGR3257");
+    Experiencia* eventoSolis = coleccion_getExperiencia("ECP1346");
 
     hotelModem->agregarParticipante(vanesa);
+	vanesa->agregarExperiencia(hotelModem);
+
     hotelSea->agregarParticipante(vanesa);
-    tourPuntos->agregarParticipante(vanesa);
+    vanesa->agregarExperiencia(hotelSea);
+	
+	tourPuntos->agregarParticipante(vanesa);
+	vanesa->agregarExperiencia(tourPuntos);
+
     eventoSolis->agregarParticipante(vanesa);
+	vanesa->agregarExperiencia(eventoSolis);
+
     tourPlazas->agregarParticipante(karen);
-    tourPuntos->agregarParticipante(karen);
+	karen->agregarExperiencia(tourPlazas);
+
+	tourPuntos->agregarParticipante(karen);
+	karen->agregarExperiencia(tourPuntos);
 }
 
 void parte_h() {
-    Turista* vanesa = buscarTur("4.951.278-9");
+    Turista* vanesa = coleccion_getTurista("4.951.278-9");
     if (vanesa != NULL) {
-        DTFecha fechaFiltro(10, 12, 2023);
+        DTFecha fechaFiltro = DTFecha(10, 12, 2023);
         std::set<std::string> resultados = vanesa->listarExperiencias(fechaFiltro, 0, 1000);
         std::set<std::string>::iterator it;
         for (it = resultados.begin(); it != resultados.end(); ++it) {
@@ -148,32 +139,30 @@ void parte_h() {
 }
 
 void parte_i(){
-    Experiencia* borrar = buscarExp("TGR3257");
-    
-    //al hacer delete llamamos al destructor por despacho y luego se libera memoria
-    //en el destructor de experiencia se borra todas las relaciones de esa experiencia
-    //con sus turistas participantes
-    if(borrar != NULL){
-        listaExp.remove(borrar);
-        delete borrar;
+	Experiencia* tourPuntos = coleccion_getExperiencia("TGR3257");
+	std::list<Turista*>::iterator it;
+    for (it = turistas.begin(); it != turistas.end(); ++it) {
+        (*it)->removerExperiencia(tourPuntos);
     }
+	coleccion_eliminarExperiencia(tourPuntos);
+	delete tourPuntos;
 }
 
 void parte_j(){
-    Turista* karen = buscarTur("1.535.442-0");
+	Turista* karen = coleccion_getTurista("1.535.442-0");
     if (karen != NULL) {
-        DTFecha fechaFiltro(10, 10, 2020);
+        DTFecha fechaFiltro = DTFecha(10, 10, 2020);
         std::set<std::string> resultados = karen->listarExperiencias(fechaFiltro, 0, 1000);
         std::set<std::string>::iterator it;
-        for (it = resultados.begin(); it != resultados.end(); ++it){
+        for (it = resultados.begin(); it != resultados.end(); ++it) {
             std::cout << *it << std::endl;
         }
     }
 }
 
 void parte_k(){
-    std::list<Experiencia*>::iterator it;
-	for (it = listaExp.begin(); it != listaExp.end(); ++it){
+	std::list<Experiencia*>::iterator it;
+	for (it = experiencias.begin(); it != experiencias.end(); ++it) {
     	std::cout << (*it)->getDT() << std::endl;
 	}
 }
