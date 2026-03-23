@@ -15,7 +15,7 @@ CC = g++
 LD = g++
 
 # Banderas obligatorias: -std=c++98 para compatibilidad total
-CCFLAGS = -Wall -Werror -I$(HDIR) -g -std=c++98
+CXXFLAGS = -Wall -Werror -I$(HDIR) -g -std=c++98
 
 # Definición de archivos de objetos
 OS = $(MODULOS:%=$(ODIR)/%.o)

@@ -95,6 +95,7 @@ void parte_f() {
     for (it = turistas.begin(); it != turistas.end(); ++it) {
         std::cout << (*it)->toString() << std::endl;
     }
+    
 }
 
 void parte_g() {
