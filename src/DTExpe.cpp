@@ -28,19 +28,19 @@ std::set<std::string> DTExpe::getTuristas() const {
     return this->turistas;
 }
 
-std::ostream& operator<<(std::ostream& os, const DTExpe& dt) {
-    std::string strImprimir = dt.getCodigoReserva() + 
-                            "->" + dt.getDescripcion() + 
-                            "(" + dt.getFecha().toString() + ")/";
-    
+std::ostream& operator<<(std::ostream& os, const DTExpe& dt){
     std::string strTuristas = "";
-    for (std::set<std::string>::const_iterator it = dt.getTuristas().begin(); it != dt.getTuristas().end(); ++it) {
-        strTuristas = strTuristas + *it + ",";
-    };
-    if (strTuristas != "") {
-        strTuristas.erase(strTuristas.size() - 1);
-    };
+    if(!dt.getTuristas().empty()){
 
-    os << strImprimir + strTuristas;
+        const std::set<std::string>& turistas = dt.getTuristas();
+        //aca estaba el problema, estaba haciendo muchas llamadas a getTuristas, en cada llamada hacia un getTuristas lo que 
+        //hacia todo un set nuevo y daba errores de memoria por reservar mucha memoria
+        
+        for (std::set<std::string>::const_iterator it = turistas.begin(); it != turistas.end(); ++it){
+            strTuristas = strTuristas + (*it) + ",";
+        };
+        strTuristas.erase(strTuristas.size()-1);
+    }
+    os <<  dt.getCodigoReserva() + "->" + dt.getDescripcion() + "(" + dt.getFecha().toString() + ")/" + strTuristas;
     return os;
 }
