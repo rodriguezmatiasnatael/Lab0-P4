@@ -79,7 +79,9 @@ void parte_c(){
 void parte_d(){
 	std::list<Experiencia*>::iterator it;
 	for (it = experiencias.begin(); it != experiencias.end(); ++it) {
-    	std::cout << (*it)->getDT() << std::endl;
+		if(*it != NULL){
+    		std::cout << (*it)->getDT() << std::endl;
+		}
 	}
 }
 
