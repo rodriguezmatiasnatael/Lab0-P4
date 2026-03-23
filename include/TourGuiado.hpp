@@ -10,9 +10,9 @@ class TourGuiado : public Experiencia {
         std::set<std::string> lugaresVisitados;
     public:
         TourGuiado(std::string, std::string, int, DTFecha, std::string, std::set<std::string>);
-        ~TourGuiado() override;
-
-        float calcularCosto() override;
+        ~TourGuiado();
+        
+        float calcularCosto();
 };
 
 #endif

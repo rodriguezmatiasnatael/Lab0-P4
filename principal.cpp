@@ -44,11 +44,11 @@ Experiencia* coleccion_getExperiencia(std::string codigoReserva){
 
 void parte_a(){
     DTFecha fecha1 = DTFecha(18, 5, 2020);
-    Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", TipoRegimen::AllInclusive, 5);
+    Experiencia* alojamiento1 = new Alojamiento("ALX5489", "Hotel moderno", 30, fecha1, "Hotel Lindorf", AllInclusive, 5);
     coleccion_guardarExperiencia(alojamiento1);
 
     DTFecha fecha2 = DTFecha(10, 2, 2025);
-    Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", TipoRegimen::MediaPension, 15);
+    Experiencia* alojamiento2 = new Alojamiento("ALJ4789", "Todas las habitaciones con vista al mar", 100, fecha2, "Hotel SeaView", MediaPension, 15);
     coleccion_guardarExperiencia(alojamiento2);
 }
 
@@ -108,6 +108,7 @@ void parte_g() {
     Experiencia* eventoSolis = coleccion_getExperiencia("ECP1346");
 
     hotelModem->agregarParticipante(vanesa);
+
 	vanesa->agregarExperiencia(hotelModem);
 
     hotelSea->agregarParticipante(vanesa);

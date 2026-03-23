@@ -11,10 +11,10 @@ class Alojamiento : public Experiencia {
         int cantNoches;
     public:
         Alojamiento(std::string, std::string, int, DTFecha, std::string, TipoRegimen, int);
-        ~Alojamiento() override;
+        ~Alojamiento();
         
         //no seria virtual??
-        float virtual calcularCosto() override;
+        float virtual calcularCosto();
 };
 
 #endif
