@@ -60,13 +60,9 @@ std::set<std::string> Turista::listarExperiencias(const DTFecha& desde, float mi
 
 void Turista::agregarExperiencia(Experiencia* e){
     experiencias.insert(e);
-    e->agregarParticipante(this);
 }
 
-void Turista::removerExperiencia(Experiencia* e){
-    if(experiencias.find(e) != experiencias.end()){
-        experiencias.erase(e);
-        e->eliminarParticipante(this);
-    }
+void Turista::removerExperiencia(Experiencia* e) {
+    experiencias.erase(e);
 }
 

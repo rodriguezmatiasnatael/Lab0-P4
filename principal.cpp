@@ -141,6 +141,8 @@ void parte_h() {
 void parte_i(){
 	Experiencia* tourPuntos = coleccion_getExperiencia("TGR3257");
 	coleccion_eliminarExperiencia(tourPuntos);
+    delete tourPuntos;
+    tourPuntos = NULL;
 }
 
 void parte_j(){

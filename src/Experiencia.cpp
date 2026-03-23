@@ -37,32 +37,19 @@ std::set<Turista*> Experiencia::getParticipantes(){
 }
 
 DTExpe Experiencia::getDT() const {
-    std::set<std::string> turistas;
+    std::set<std::string> nombresTuristas;
     for (std::set<Turista*>::const_iterator it = participantes.begin(); it != participantes.end(); ++it) {
-        Turista* t = *it;
-        turistas.insert(t->getNombre());
+        if (*it != NULL) { // <--- Verificación de seguridad
+            nombresTuristas.insert((*it)->getNombre());
+        }
     }
-    return DTExpe(this->codigoReserva, this->descripcion, this->fecha, turistas);
+    return DTExpe(this->codigoReserva, this->descripcion, this->fecha, nombresTuristas);
 }
 
-bool Experiencia::eliminarParticipante(Turista * t) {
-    if (t == nullptr) {
-        return false;
-    } else {
-        return participantes.erase(t) > 0;
-    }
+void Experiencia::eliminarParticipante(Turista* t) {
+    this->participantes.erase(t);
 }
 
-bool Experiencia::agregarParticipante(Turista * t) {
-    if (t == nullptr) {
-        return false;
-    } else {
-        return participantes.insert(t).second;
-    }
+void Experiencia::agregarParticipante(Turista * t) {
+    participantes.insert(t);
 }
-
-/*void Experiencia::setParticipantes(set<string>& p){
-    participantes = p;
-}
-En el hpp puse por que creo que no iria    
-*/

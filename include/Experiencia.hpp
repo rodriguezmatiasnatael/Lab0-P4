@@ -26,8 +26,8 @@ class Experiencia{
         const DTFecha& getFecha() const;
         DTExpe getDT() const;
 
-        bool eliminarParticipante(Turista* t);
-        bool agregarParticipante(Turista* t);
+        void eliminarParticipante(Turista* t);
+        void agregarParticipante(Turista* t);
 
         virtual float calcularCosto() = 0; //El = 0 obliga a que sea abstracto
 
